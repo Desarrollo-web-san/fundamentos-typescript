@@ -138,3 +138,57 @@ En conclusión se puede decir que Typescript es diferente de JavaScript y por en
    ```txt
    npx tsc --version
    ```
+
+## Atrapando bugs
+
+Cabe mencionar que podemos ejecutar el analizador de codigo estatico de Typescript en un archivo de Javascript, veamos un ejemplo:
+
+Tenemos el siguiente código:
+
+```js
+() => {
+  const myCart = [];
+  const todos = [];
+  const limit = 2;
+
+  async function getTodos() {
+    const rta = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+      mehtod: "GET",
+    });
+    const data = await rta.parseJson();
+    todos.concat(data);
+  }
+
+  function getTotal() {
+    const total = 0;
+    for (const i = 0; i < todos.length(); i++) {
+      total += todos[i].prize;
+    }
+    return total;
+  }
+
+  function addProduct(index) {
+    if (getTotal <= limit) {
+      myCart.push(todos[index]);
+    }
+  }
+
+  await getTodos();
+  addProducto(1);
+  addProducto(2);
+
+  const total = getTotal();
+  console.log(total);
+  const person = { name: "Alejo", lastName: "Dev" };
+  const rta = person + limit;
+  console.log(rta);
+};
+```
+
+A simple vista no parece haber muchos errores, pero si activamos el analizador de código estático nos llevaremos una gran sorpresa. Para activarlo debemos agregar la siguiente linea al inicio del archivo.
+
+Luego de su activación deberiamos tener algo como esto:
+
+![Errores en javascript](Images/Error-JS.png)
+
+Como se menciono anteriormente, en JavaScript no podemos detectar los errores hasta que el código se ejecute pero gracias a TypeScript estos errores van a ser capturados al momento de escribir el código.
