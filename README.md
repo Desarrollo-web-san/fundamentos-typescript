@@ -192,3 +192,49 @@ Luego de su activación deberiamos tener algo como esto:
 ![Errores en javascript](Images/Error-JS.png)
 
 Como se menciono anteriormente, en JavaScript no podemos detectar los errores hasta que el código se ejecute pero gracias a TypeScript estos errores van a ser capturados al momento de escribir el código.
+
+## Compilador de Typescript
+
+Debemos recordar que tanto el navegador como node unicamente entienden archivos de JavaScript (.js), es por eso que debemos convertir nuestro código de TypeScript a JavaScript y a este proceso se le conoce como compilación.
+
+![Compilación](Images/Compilacion.png)
+
+Al momento de construir nuestra aplicación, todo el código será escrito en TypeScript pero cuando se vaya a ejecutar dicho código en el navegador o servidor, este deberá pasar por un proceso de transformación para convertirse a código de JavaScript. Una de las ventajas que tenemos es que podemos elegir la versión de JavaScript que necesitemos y el compilador va a convertir nuestro código de TypeScript a la versión de JavaScript que se haya elegido.
+
+Veamos un ejemplo de compilación:
+
+1. Dentro de la carpeta src vamos a crear un archivo llamado **hello.ts** y dentro de el vamos colocar el siguiente código:
+
+   ```ts
+   const userName = "AlejoDev95";
+   console.log(userName);
+   ```
+
+2. Ejecutar el siguiente comando para compilar nuestro código a JavaScript
+
+   ```txt
+    npx tsc src/01-hello.ts
+   ```
+
+   Deberíamos tener al mismo nivel un archivo llamado _hello.js_ el cual tiene el siguiente código:
+
+   ```js
+   var userName = "AlejoDev95";
+   console.log(userName);
+   ```
+
+   Aqui vemos el resultado de la compilación de nuestro código escrito en TypeScript convertido a código de JavaScript.
+
+   Debemos tener en cuenta que por defecto se hace la compilación a JavaScript en su version ES3, pero nosotros podemos indicar cual es la versión de JavaScript objetivo, para ello ejecutamos el siguiente comando:
+
+   ```txt
+    npx tsc src/01-hello.ts --target ES6
+   ```
+
+   En el ejemplo anterior estamos compilando nuestro código de TypeScript a JavaScript en su version ES6.
+
+   Tambien podemos indicar cual va ser la carpeta objetivo esto con el fin de ser mas organizados en nuestro proyecto. Vamos a generar un carpeta llamada **dist** la cual va a contener nuestro código de JavaScript. Ejecutamos el siguiente comando para indicar la carpeta destino:
+
+   ```txt
+   npx tsc src/**/*.ts --target es6 --outDir dist
+   ```
