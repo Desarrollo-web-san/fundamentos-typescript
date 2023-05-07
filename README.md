@@ -63,3 +63,78 @@ Según el libro **Software Engineering at Google** señalan ciertas capas para d
 4. Revisión de código (Code Review): Se verifica si se ha seguido con las normas, estándares y mejores prácticas establecidas por el equipo.
 
 En conclusión se puede decir que Typescript es diferente de JavaScript y por ende un desarrollador de Typescript también sera diferente a un desarrollador de JavaScript.
+
+## Configuración del proyecto
+
+1. Lo primero que debemos verificar es que tengamos instalado git, para ello usamos el siguiente comando dentro de cualquier terminal:
+
+   ```txt
+   git --version
+   ```
+
+   En caso de tener una respuesta como la siguiente significa que tenemos instalado git:
+
+   ```txt
+   git version 2.25.1
+   ```
+
+   En caso contrario, debemos instalarlo:
+
+   - Windows sin WSL: Descargar git desde la siguiente [página](https://git-scm.com/) e instalar de forma tipica.
+
+   - Windows con WSL, linux o Mac: Ejecutar el siguiente comando dentro de cualquier terminal:
+
+     ```txt
+     sudo apt-get install git
+     ```
+
+   Para verificar que todo quedo instalado correctamente ejecutamos el comando para verificar la versión.
+
+2. A continuación vamos a crear la carpeta del proyecto, se recomienda crearla con el nombre "Typescript-Fundamentos" y que este ubicada en el lugar de tu preferencia.
+
+3. Dentro de la carpeta del proyecto vamos a crear las siguientes carpetas y archivos:
+
+   - scr (folder): Va a conteneder todo los archivos de nuestro proyectos.
+
+   - .gitignore (file): Nos va a servir para ignorar los archivos que no queremos respaldar. Podemos crearlo accediendo a la siguiente página [gitignore.io](https://www.toptal.com/developers/gitignore). Escribimos los siguientes terminos: windows, mac, linux, node y le damos generar para obtener nuestro gitignore.
+
+   - .editorconfig (file): Este archivo nos va a sevir para establecer unas reglas generales en el editor que tambien van a servir para que los demas miembros del equipo puedan trabajar de manera similar. El archivo va a tener el siguiente contenido:
+
+     ```txt
+       # Editor configuration, see https://editorconfig.org
+       root = true
+
+       [*]
+       charset = utf-8
+       indent_style = space
+       indent_size = 2
+       insert_final_newline = true
+       trim_trailing_whitespace = true
+
+       [*.ts]
+       quote_type = single
+
+       [*.md]
+       max_line_length = off
+       trim_trailing_whitespace = false
+     ```
+
+   - Package.json (file): Inicilizamos el proyecto de node usando el siguiente comando:
+
+     ```txt
+       npm init -y
+     ```
+
+     De esta manera tendremos creado el archivo package.json.
+
+4. Instalamos TypeScript por medio del siguiente comando:
+
+   ```txt
+     npm install typescript --save-dev
+   ```
+
+   De esta manera estamos instalando Typescript a nivel de proyecto. Para verificar la versión que quedo instalada usamos el comando:
+
+   ```txt
+   npx tsc --version
+   ```

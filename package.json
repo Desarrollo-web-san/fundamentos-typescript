@@ -1,0 +1,15 @@
+{
+  "name": "fundamentals",
+  "version": "1.0.0",
+  "description": "Curso de fundamentos de TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "AlejoDev95",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
