@@ -238,3 +238,31 @@ Veamos un ejemplo de compilación:
    ```txt
    npx tsc src/**/*.ts --target es6 --outDir dist
    ```
+
+## TSConfig.json
+
+Para evitar el uso de los comando, podemos crear un archivo que se encarque de la configuración de nuestro proyecto, dicho archivo se llama TSConfig.json y para crearlo ejecutamos el siguiente comando:
+
+```txt
+npx tsc --init
+```
+
+Como resultado no da la siguiente información:
+
+![TSConfig.json](Images/TSConfig.json-result.png)
+
+Ahora que ya tenemos creado el archivo tsconfig.json podemos configurar varias cosas, entre ellas la versión de JavaScript, la carpeta de entrada y salida y otras cosas que se irán viendo mas adelante.
+
+Para ejecutar el compilador debemos ejecutar el siguiente comando:
+
+```txt
+npx tsc
+```
+
+Y de esta forma podremos compilar nuestro proyecto de una manera mas sencilla. Si deseamos dejar el compilador activo, es decir que se ejecute cada vez que guardemos nuestros cambios solamente debemos agregar el flag --watch, entonces el comando quedaría de la siguiente manera:
+
+```txt
+npx tsc --watch
+```
+
+Algo curioso a notar es que a pesar de que el compilador nos da algunos errores (Que mas adelante se iran corrigiendo), aun así se hace la compilación a JavaScript pero se aclara que esto depende de la configuración que se haga en el archivo tsconfig.json.
