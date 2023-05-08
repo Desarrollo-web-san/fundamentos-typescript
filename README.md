@@ -426,3 +426,31 @@ Se aclara la diferencia entre **Number** y **number**:
 
 - Number: Es una clase que proporciona métodos y propiedades para trabajar con números.
 - number: Es el tipo primitivo de TypeScript utilizado para numeros.
+
+## Boleans
+
+Las variables de tipo boolean solamente pueden ser **true** o **false**.
+
+```ts
+(() => {
+  let isNew = false;
+  console.log("isNew before", isNew);
+  // isNew = 'true'; // Da error porque solamente acepta valores booleans (true o false)
+  isNew = true;
+  console.log("isNew after", isNew);
+})();
+```
+
+Tambien podemos asignar un valor booleano en base a una condición:
+
+```ts
+(() => {
+  const number = Math.random();
+  let isNew = false;
+  console.log("number", number);
+  isNew = number > 0.5 ? true : false;
+  console.log("isNew", isNew);
+})();
+```
+
+Recordemos que se debe usar el tipo primitivo para asignar el tipo (boolean) y no la clase (Boolean).
