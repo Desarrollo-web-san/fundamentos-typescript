@@ -454,3 +454,24 @@ Tambien podemos asignar un valor booleano en base a una condición:
 ```
 
 Recordemos que se debe usar el tipo primitivo para asignar el tipo (boolean) y no la clase (Boolean).
+
+## String
+
+Recordemos que las cadenas de caracteres o string se pueden crear de diferentes maneras:
+
+- Doble comilla ("")
+- Comilla simple ('')
+- Template strings (``);
+
+```ts
+(() => {
+  // Creación de variables tipo string
+  const userName = "Julian";
+  const userLastname = "Sanchez";
+  let userFullname = `${userName} ${userLastname}`;
+  console.log(userFullname);
+  // userFullname = 1234 // Error de asignación
+})();
+```
+
+El uso de las diferentes formas para crear un string va a depender de la necesidad y las practicas de cada equipo. Tambien se debe recordar el usar el tipo primitivo (string) para asignar el tipo y no usar la clase (String).
