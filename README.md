@@ -266,3 +266,116 @@ npx tsc --watch
 ```
 
 Algo curioso a notar es que a pesar de que el compilador nos da algunos errores (Que mas adelante se iran corrigiendo), aun así se hace la compilación a JavaScript pero se aclara que esto depende de la configuración que se haga en el archivo tsconfig.json.
+
+## ¿Qué es el tipado en Typescript?
+
+Recordemos que en JavaScript si existen los tipos de datos pero es un lenguaje debilmente tipado, es decir que una variable puede iniciar siendo de un tipo y a lo largo de la vida del programa puede terminar siendo otro. Veamos un ejemplo:
+
+```js
+let example = null; // null
+example = "Soy un string"; // string
+example = 3.14; // number
+example = true; // boolean
+example = undefined; // undefined
+example = []; // array
+example = {
+  // object
+  name: "AlejoDev95",
+  role: "Front-end",
+};
+
+// function
+example = () => {
+  return null;
+};
+```
+
+Podemos observar como la misma variable va cambiando de tipo y esto es gracias a la flexibilidad que nos da JavaScript. Está flexibilidad no es un defecto si se sabe implementar con responsabilidad, recordemos que "Que un gran poder conlleva una gran responsabilidad".
+
+Para crear variables en TypeScript tenemos dos formas de hacerlo:
+
+- Explicita: Se indica de manera explicita el tipo que va a tener la variable.
+
+  ```ts
+  let example: number = 10;
+  ```
+
+- Implicita: No se indica el tipo sino que es gracias al valor que se le asigna el motor de inferencia le asigna el tipo a la variable.
+
+  ```ts
+  let example = 10; // Implicitamente obtiene el tipo number
+  ```
+
+Independientemente de la manera en que se declare una variable, esta ya tendría un tipo asignado y si se intenta asignar otro tipo de valor TypeScript no dara un error.
+
+```ts
+let myName = "AlejoDev95"; // Implicitamente string
+myName = false; // Dará un error por que la variable myName solo puede guardar strings.
+
+let age: number = 27;
+age = "Mi edad es 27;"; // Dará un error por que la variable age solo puede guardar numeros.
+```
+
+De esta manera queda explicado las dos formas de crear variables en TypeScript. Ahora bien puede que nos surga la siguiente pregunta ¿Cuando es recomendable usar la forma explicita y cuando es recomendable usar la forma implicita?.
+
+Se recominda que la forma explicita se use cuando se declara una varibale pero no se le asigna ningún valor y la forma implicita se recomienda cuando se declara una variable y se le asigna un valor. Veamos un ejemplo:
+
+```ts
+let myUserName = "AlejoDev95"; // Se usa la forma implicita cuando se declara y asigna el valor a una variable.
+let myAge: number; // Se usa la forma explicita cuando se declara una variable pero no se le asigna ningún valor.
+```
+
+Independientemente de la forma en que se declare una variable y gracias a TypeScript y su tipado podemos acceder a los métodos y propiedades que cada tipo de dato nos ofrece.
+
+```ts
+let myUserName = "AlejoDev95";
+let price = 10.5461231;
+
+// Métodos que vienen los tipos strings
+myUserName.length;
+myUserName.slice();
+
+// Métodos que vienen los tipos numbers
+price.toFixed();
+price.toExponential();
+```
+
+Al momento de trabajar con constantes no se asigna el tipo como tal y en su lugar queda el valor, veamos un ejemplo:
+
+```ts
+const productName = "Computer";
+```
+
+En primera instancia se puede pensar que el tipo de la constante **productName** es string pero su verdadero tipo es el valor que se le ha asignado y esto ocurre por qué es una constante.
+
+![Constants](Images/Constants.png)
+
+En caso de trabajar solamente con TypeScript sin modulos debemos utilizar las funciones autoinvocadas (IIFE) para no tener problemas de scope entre los diferentes archivos.
+
+```ts
+(() => {
+  let myName = "AlejoDev95"; // Implicitamente string
+  // myName = false; // Dara un error porque la variable myName solo puede guardar strings.
+
+  let age: number = 27;
+  // age = "Mi edad es 27;"; // Dará un error por que la variable age solo puede guardar numeros.
+
+  // Cuando usar la asignacion de tipo explicita o la implicita
+
+  let myUserName = "AlejoDev95"; // Se usa la forma implicita cuando se declara y asigna el valor a una variable.
+  let myAge: number; // Se usa la forma explicita cuando se declara una variable pero no se le asigna ningún valor.
+
+  // Métodos y propiedades de los tipos de datos
+  let price = 10.5461231;
+
+  // Métodos que vienen los tipos strings
+  myUserName.length;
+  myUserName.slice();
+
+  // Métodos que vienen los tipos numbers
+  price.toFixed();
+  price.toExponential();
+
+  const productName = "Computer";
+})();
+```
