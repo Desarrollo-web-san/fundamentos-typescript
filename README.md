@@ -379,3 +379,50 @@ En caso de trabajar solamente con TypeScript sin modulos debemos utilizar las fu
   const productName = "Computer";
 })();
 ```
+
+## Numbers
+
+Veamos un poco mas a fondo el tipo de datos number y como TypeScript nos ayuda a prevenir algunos errores.
+
+```ts
+(() => {
+  let productPrice = 1500;
+  productPrice = 100;
+
+  let result = productPrice + 100;
+  // Lanza un error porque solo acepta valores numericos y en este caso se le esta asignando un string.
+  // result = productPrice + '100';
+  console.log("result", result);
+})();
+```
+
+Podemos observar que la variable **result** es de tipo number y por ende solamente va ha aceptar valores numericos y va a lanzar un error si se le asigna un valor diferente.
+
+Veamos un ejemplo más de como el tipado nos puede ayudar a prevenir o detectar algunos errores
+
+```ts
+let productInStock: number;
+console.log(productInStock); // Error
+if (productInStock > 0) {
+  // Error
+  console.log("Send products");
+} else {
+  console.log("There are not products");
+}
+```
+
+En el ejemplo de arriba lanzara un error por qué la variable **productInStock** no tiene asignado ningún valor. De esta manera podemos ver que gracias a TypeScript podemos darnos cuenta de diferentes errores casi al instante de haber escrito nuestro código.
+
+Otro concepto a tener en cuenta con los tipos numericos es el concepto de **NAN (Not A Number)** el cual es un valor especial que se utiliza para indicar que un número no es un número valido. Este valor se puede obtener como resultado de algunas operaciones matemáticas, tales como dividir por cero, tratar de calcular la raiz cuadrada de un numero negativo o intentar convertir un conjunto de caracteres alfabeticos a un numero.
+
+```ts
+const input = parseInt("asdf");
+console.log("input", input);
+```
+
+En el ejemplo anterior estamos intentando convertir una cadena de caracteres alfabeticos a un numero y esto da como resultado **NAN**
+
+Se aclara la diferencia entre **Number** y **number**:
+
+- Number: Es una clase que proporciona métodos y propiedades para trabajar con números.
+- number: Es el tipo primitivo de TypeScript utilizado para numeros.
