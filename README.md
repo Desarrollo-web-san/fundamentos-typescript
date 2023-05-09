@@ -475,3 +475,68 @@ Recordemos que las cadenas de caracteres o string se pueden crear de diferentes 
 ```
 
 El uso de las diferentes formas para crear un string va a depender de la necesidad y las practicas de cada equipo. Tambien se debe recordar el usar el tipo primitivo (string) para asignar el tipo y no usar la clase (String).
+
+## Arrays
+
+Recordemos que los arrays son una colección de datos y en TypeScript podemos indicar que tipo o tipos puede contener un array.
+
+- De forma inferida:
+
+  ```ts
+  // Array de numbers
+  (() => {
+    const listOfValues = [1, 2, 3, 4, 5];
+    console.log(listOfValues);
+  })();
+
+  // Arrays de string, number y boolean
+  (() => {
+    const listOfValues = [1, 2, 3, true, "Value"];
+    console.log(listOfValues);
+  })();
+  ```
+
+  Según los valores con lo que se inicialice un array este va a inferir los tipos que pueden ser admitidos.
+
+- De forma explicita:
+
+  ```ts
+  (() => {
+    const listOfSomething: string[] = ["Name", "Coty"];
+    console.log(listOfSomething);
+  })();
+  ```
+
+  De esta forma estamos dicienco que el array listOfSomething solamente va ha admitir valores de tipo string.
+
+  ```ts
+  (() => {
+    const listOfSomething: (string | number)[] = ["Name", 1, 2, 3, "Coty"];
+    console.log(listOfSomething);
+  })();
+  ```
+
+  De esta forma estamos indicando que el array listOfSomething solamente va ha aceptar valores de tipo string o number.
+
+  ```ts
+  (() => {
+    const listOfTypes: (string | number | boolean)[] = [true, 1, 2, 3];
+    console.log(listOfTypes);
+    listOfTypes.push("Value");
+    console.log(listOfTypes);
+  })();
+  ```
+
+  No es necesario inicializar un array con cada uno de los valores que admite.
+
+Algo interesante del tipado de los arrays es que cuando hacemos uso de algún método que requiera de un callback para funcionar como por ejemplo el map, el argumento que usamos ya infiere el tipo del array
+
+```ts
+(() => {
+  const listOfPrice: number[] = [100, 150, 200, 300];
+  const newListOfPrice = listOfPrice.map((price) => price * 0.2);
+  console.log(newListOfPrice);
+})();
+```
+
+De esta manera podemos trabajar con los array y restringit los tipos que este puede aceptar.
