@@ -539,4 +539,30 @@ Algo interesante del tipado de los arrays es que cuando hacemos uso de algún m�
 })();
 ```
 
-De esta manera podemos trabajar con los array y restringit los tipos que este puede aceptar.
+De esta manera podemos trabajar con los array y restringir los tipos que este puede aceptar.
+
+## Any
+
+Es un tipo creado especificamente en TypeScript y nos permite aplicar la flexibilidad que tiene JavaScript. El uso de este tipo tiene un proposito y es permitir que la migración de JavaScript hacia TypeScript sea mas facil, pero se recomienda que cuando el equipo de desarrollo tenga una madures usando TypeScript no se use en tipo **any**.
+
+```ts
+let myDinamycVar: any;
+myDinamycVar = 'AlejoDev95;
+myDinamycVar = 123;
+myDinamycVar = true;
+myDinamycVar = null;
+myDinamycVar = {};
+```
+
+Tambien se puede usar el valor de **any** cuando utilizamos una librería y no sabemos que tipo nos retorna o no viene tipada, pero si sabemos el tipo que nos retorna así no esta tipada entonces podemos hacer un casteo de tipos.
+
+```ts
+let myDinamycVar: any;
+myDinamycVar = 'AlejoDev95';
+const myString = (myDinamycVar as string).toLowerCase();
+
+myDinamycVar = 123;
+const myNumber = (<number> myDinamycVar).toFixed();
+```
+
+Recuerda que usar any debe ser la excepción y no la regla.
