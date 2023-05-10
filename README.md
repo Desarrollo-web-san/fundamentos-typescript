@@ -558,11 +558,38 @@ Tambien se puede usar el valor de **any** cuando utilizamos una librería y no s
 
 ```ts
 let myDinamycVar: any;
-myDinamycVar = 'AlejoDev95';
+myDinamycVar = "AlejoDev95";
 const myString = (myDinamycVar as string).toLowerCase();
 
 myDinamycVar = 123;
-const myNumber = (<number> myDinamycVar).toFixed();
+const myNumber = (<number>myDinamycVar).toFixed();
 ```
 
 Recuerda que usar any debe ser la excepción y no la regla.
+
+## Union Types
+
+Union Types nos permite definir varios tipos de datos a una variable, argumento, retorno de una funcion, etc.
+
+```ts
+let myId: string | number;
+
+myId = "123";
+console.log(myId);
+myId = 123;
+console.log(myId);
+
+const generateValue = (value: string | number) => {
+  if (typeof value === "string") {
+    console.log(value.toLowerCase());
+  } else {
+    console.log(value.toFixed());
+  }
+};
+
+generateValue("AlejoDev95");
+generateValue(32.2145);
+// generateValue(true); // Error por qué no acepta booleans
+```
+
+De esta manera podemos restringir el tipo de datos en lugar de usar **any**
