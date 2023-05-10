@@ -643,3 +643,119 @@ console.log(numberValue);
 ```
 
 De esta manera podemos reutilizar código para no repetir código y en su lugar crear nuestros propios tipos.
+
+## Null y undefined
+
+Son tipos primitivos al igual que string, number o boolean, pero se debe tener en cuenta ciertas cosas.
+
+1. Undefined indica que una variable o función no ha sido inicializada.
+
+2. Null se utiliza para indicar intencionalmente que una variable o función no tiene ningún valor.
+
+Para que una variable sea de tipo null o undefined toca indicar explicitamente su tipo, de lo contrario seran de tipo any.
+
+```ts
+// Por inferencia ambos son any
+let myVariable1 = undefined;
+let myVariable2 = null;
+// Explicitamente se les puede indicar el tipo
+let myVariable3: undefined = undefined;
+let myVariable4: null = null;
+```
+
+Por lo general se usa más null que undefined pero un caso de uso para undefined sería cuando no se ha inicializado una varible o cuando una función no devuelve un resultado explicito. Por otra parte se puede usar null para indicar una intención explicita de que una variable no tiene ningun valor asignado.
+
+```ts
+// Variable inicializada con valor null
+let variable1: string | null = "AlejoDev95";
+
+// Variable a la que aún no se le ha asignado un valor (por defecto undefined)
+let variable2: number;
+
+// Función que devuelve null
+function funcion1(): string | null {
+  // Código de la función aquí
+  return null;
+}
+
+// Función que devuelve undefined
+function funcion2(): void {
+  // Código de la función aquí
+}
+
+console.log(variable1); // AlejoDev95
+variable1 = funcion1();
+console.log(variable1); // null
+```
+
+Tambien podemos utilizar los unions type para indicar que una variable o argumento de una función puede ser algún tipo primitivo mas null o undefined. Pero ahora nos puede surgir la duda de como controlar estos casos, veamos algunos ejemplos:
+
+- usando if-else:
+
+  ```ts
+  const Greet = (name: string | null) => {
+    let hello = "Hello";
+    if (name) {
+      hello = `${hello} ${name}`;
+    } else {
+      hello = `${hello}....`;
+    }
+
+    return hello;
+  };
+
+  console.log(Greet("AlejoDev95")); // Hello AlejoDev95
+  console.log(Greet(null)); // Hello....
+  ```
+
+- Usando el operador ternario
+
+  ```ts
+  const GreetV2 = (name: string | null) => {
+    let hello = "Hello ";
+    hello = name ? name : "...";
+    return hello;
+  };
+
+  console.log(GreetV2("AlejoDev95"));
+  console.log(GreetV2(null));
+  ```
+
+- Usando Nullish coalescing operator: (??): Recordemos que este operador unicamente va a tomar como valores negativos a null y undefined.
+
+  ```ts
+  const GreetV3 = (name: string | null) => {
+    const hello = `Hello ${name}` ?? `Hello....`;
+    return hello;
+  };
+
+  console.log(GreetV3("AlejoDev95"));
+  console.log(GreetV3(null));
+  ```
+
+- Usando logical OR operator (||): Recordemos que este operador va a tomar como valores negativos a: 0, NaN, strings vacíos ("", '', ``), false, null y undefined.
+
+  ```ts
+  const GreetV4 = (name: string | null) => {
+    const hello = `Hello ${name}` || `Hello....`;
+    return hello;
+  };
+
+  console.log(GreetV4("AlejoDev95"));
+  console.log(GreetV4(null));
+  ```
+
+- Optional Chaining Operator(?): Recordemos que este operador se puede utilizar cuando queremos llamar a una propiedad o método de una variable pero no sabemos si en ese momento tiene un valor asignado o es null o undifined.
+
+  ```ts
+  const GreetV5 = (name: string | null) => {
+    let hello = "Hello ";
+    hello += name?.toLowerCase() || "...";
+    return hello;
+  };
+
+  console.log(GreetV5("AlejoDev95"));
+  console.log(GreetV5(null));
+  ```
+
+De esta manera vimos diferentes formas de poder controlar los valores null undefined.
