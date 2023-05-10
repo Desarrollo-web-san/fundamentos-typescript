@@ -759,3 +759,46 @@ Tambien podemos utilizar los unions type para indicar que una variable o argumen
   ```
 
 De esta manera vimos diferentes formas de poder controlar los valores null undefined.
+
+## Funciones
+
+Algo que se debe tener en cuenta con las funciones en TypeScipt es que va a ser muy cuidadoso con los parametros que se le pase a las funciones, ya que va a validar que se pase la cantidad exacta de parametros obligatorios con su respectivo tipo.
+
+```ts
+type Size = "S" | "M" | "L";
+const createProductToJSON = (title: string, price: number, description: string, size: Size) => {
+  return { title, price, description, size };
+};
+```
+
+Esta función va a tener los parametros de title, price, description, size como obligatorios, es decir que se debe pasar todos para que la función pueda ser llamada.
+
+```ts
+type Size = "S" | "M" | "L";
+const createProductToJSON = (title: string, price: number, description: string, size: Size) => {
+  return { title, price, description, size };
+};
+
+// const product1 = createProductToJSON("Product1", 100, "Lorem"); // Dará un error por que no se le paso el argumento para el parametro size.
+const product1 = createProductToJSON("Product1", 100, "Lorem", "L");
+console.log(product1);
+```
+
+Si deseamos tener parametros opcionales basta con agregar el simbolo **?** luego del nombre de parametro y antes del tipo.
+
+```ts
+(() => {
+  type Size = "S" | "M" | "L";
+  const createProductToJSON = (title: string, price: number, description: string, size?: Size) => {
+    return { title, price, description, size };
+  };
+
+  //Ambos casos si van a funcionar por qué ahora size es opcional
+  const product1 = createProductToJSON("Product1", 100, "Lorem");
+  const product2 = createProductToJSON("Product2", 500, "Lorem x2", "M");
+  console.log(product1);
+  console.log(product1.size);
+  console.log(product2);
+  console.log(product2.size);
+})();
+```
