@@ -1,8 +1,11 @@
 (() => {
   let myDinamycVar: any;
   myDinamycVar = true;
+  console.log(myDinamycVar);
   myDinamycVar = null;
+  console.log(myDinamycVar);
   myDinamycVar = {};
+  console.log(myDinamycVar);
 
   myDinamycVar = 'AlejoDev95';
   const myString = (myDinamycVar as string).toLowerCase();
