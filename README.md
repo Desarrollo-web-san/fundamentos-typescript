@@ -802,3 +802,60 @@ Si deseamos tener parametros opcionales basta con agregar el simbolo **?** luego
   console.log(product2.size);
 })();
 ```
+
+## Retorno de funciones
+
+Asi como podemos tipar las variables y los parametros, tambien lo podemos hacer con el retorno de las funciones. Al igual que pasa con las variables TypeScript puede inferir el tipo de retorno o nosotros se lo podemos asignar de manera explicita.
+
+- Forma implicita:
+
+  ```ts
+  (() => {
+    const calcValue = (prices: number[]) => {
+      let total = 0;
+      prices.forEach((price) => (total += price));
+      return total;
+    };
+
+    console.log(calcValue([100, 200, 300]));
+  })();
+  ```
+
+  La función **calcValue** va a retornar un numero porque en su return estamos retornando un valor de tipo number.
+
+- Forma explicita:
+
+  ```ts
+  (() => {
+    const calcValue = (prices: number[]): number => {
+      let total = 0;
+      prices.forEach((price) => (total += price));
+      return total;
+    };
+
+    console.log(calcValue([100, 200, 300]));
+  })();
+  ```
+
+  La función **calcValue** va a retornar un numero porque nosotros le asignamos ese valor de retorno y caso de retonar otro tipo de dato, nos va a dar un error.
+
+Todos los tipos de datos que hemos visto hasta ahora se pueden usar para indicar el tipo de retorno de una función, pero existe un tipo especial llamado void.
+
+- void: Este tipo de retorno nos indica que una funcion no va retornar nada y por lo general son comunmente usadas como funciones secundarias que se encargan de llamar a otras funciones. Se puede colocar el tipo de dato o dejarlo de forma implicita.
+
+  ```ts
+  (() => {
+    const calcValue = (prices: number[]): number => {
+      let total = 0;
+      prices.forEach((price) => (total += price));
+      return total;
+    };
+
+    const showTotal = (): void => {
+      const totalPrice = calcValue([100, 200, 300]);
+      console.log("The total price is:", totalPrice);
+    };
+
+    showTotal();
+  })();
+  ```
