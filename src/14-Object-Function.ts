@@ -1,13 +1,15 @@
 (() => {
   type Size = 'S' | 'M' | 'L';
-  const listOfProducts: any[] = [];
-
-  const addProduct = (product: {
+  type Product = {
     title: string;
     price: number;
     description: string;
     size?: Size;
-  }) => {
+  };
+
+  const listOfProducts: Product[] = [];
+
+  const addProduct = (product: Product): void => {
     listOfProducts.push(product);
   };
 
