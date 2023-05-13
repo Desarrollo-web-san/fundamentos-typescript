@@ -40,7 +40,7 @@ Veamos que cosas de deben tener en cuenta del ecosistema de JavaScript para trab
 
 **¿Typescript es diferente de JavaScript? o un ¿Desarrollador de Typescript es diferente a un desarrollador de JavaScript?**
 
-Lo primero que se debe tener en cuenta es que JavaScript ha tenido un uso y mejora incremental a través del tiempo, ya que no solamente se puede usar para el desarrollo Front-end y Back-end sino que tambien nos permite construir aplicaciones móviles, videojuegos, Automatización de Tareas, extensiones y complementos del navegador, Internet de las Cosas (IoT), Machine Learning, etc. En otras palabras JavaScript ha sido un lenguaje que ha madurado a traves del tiempo.
+Lo primero que se debe tener en cuenta es que JavaScript ha tenido un uso y mejora incremental a través del tiempo, ya que no solamente se puede usar para el desarrollo Front-end y Back-end sino que tambien nos permite construir aplicaciones móviles, videojuegos, Automatización de Tareas, extensiones, complementos del navegador, Internet de las Cosas (IoT), Machine Learning, etc. En otras palabras JavaScript ha sido un lenguaje que ha madurado a traves del tiempo.
 
 Sin embargo hasta ahora existe una desventaja al momento de usar JavaScript y es que solamente se detectan los errores cuando el código se ejecuta. Aquí es donde se destaca la principal ventaja de usar TypeScript ya que este nos proporciona un **análisis de código estático** que nos ayuda a prevenir errores antes de ejecutar el código.
 
@@ -185,7 +185,7 @@ Tenemos el siguiente código:
 };
 ```
 
-A simple vista no parece haber muchos errores, pero si activamos el analizador de código estático nos llevaremos una gran sorpresa. Para activarlo debemos agregar la siguiente linea al inicio del archivo.
+A simple vista no parece haber muchos errores, pero si activamos el analizador de código estático nos llevaremos una gran sorpresa. Para activarlo debemos agregar la siguiente linea **@ts-check** al inicio del archivo.
 
 Luego de su activación deberiamos tener algo como esto:
 
@@ -247,7 +247,7 @@ Para evitar el uso de los comando, podemos crear un archivo que se encarque de l
 npx tsc --init
 ```
 
-Como resultado no da la siguiente información:
+Como resultado nos da la siguiente información:
 
 ![TSConfig.json](Images/TSConfig.json-result.png)
 
@@ -936,3 +936,9 @@ Asi como podemos crear tipos personalizados para los tipo primitivos tambien pod
   console.log("listOfProducts", listOfProducts);
 })();
 ```
+
+## Modulos: Imports y Exports
+
+En typescript podemos realizar programación modular y separar responsabilidades en diferentes archivos. La ventaja de este enfoque es que podemos dividir nuestra aplicación en modulos o componentes independientes que realizan tareas especificas.
+
+En typescript para que un elemento pueda ser usado tenemos que anteponerle la palabra reservada **export** y para llamarlo usamos **import**.
